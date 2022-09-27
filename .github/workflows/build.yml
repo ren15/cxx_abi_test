@@ -3,34 +3,46 @@ name: CI
 on: push
 
 jobs:
-  build:
+  centos:
     runs-on: ubuntu-20.04
-
-
     steps:
       - uses: actions/checkout@v2
-
       - name: Show basic system info
         run: |
           uname -a
           lscpu
           free -h
-          df -h
-          ip a
-          ls
-          pwd
-          ls /etc/*release
 
       - name: Run centos
         run: |
           bash scripts/centos7.sh
 
+
+  ubuntu:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Show basic system info
+        run: |
+          uname -a
+          lscpu
+          free -h
+
       - name: Run ubuntu
         run: |
           bash scripts/ubuntu20.sh
 
+        
+  arch:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Show basic system info
+        run: |
+          uname -a
+          lscpu
+          free -h
+
       - name: Run arch
         run: |
           bash scripts/arch.sh
-
-
